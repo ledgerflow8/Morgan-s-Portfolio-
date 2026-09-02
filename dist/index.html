@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morgan — Web3 KOL, Community Builder &amp; Generative Artist</title>
+  <meta name="description" content="Morgan — Web3 KOL, community builder, and generative artist. Campaign creative, AI-generated art, and alpha for projects entering DeFi.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0a0b;
+      --bg-raised:#131315;
+      --line:#232326;
+      --ink:#f2f1ef;
+      --ink-dim:#a5a4a1;
+      --ink-faint:#6f6e6c;
+      --accent:oklch(0.72 0.16 85);
+      --accent-2:oklch(0.62 0.14 30);
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;}
+    h1,h2,h3,.display{font-family:'Bebas Neue','Inter',system-ui,sans-serif;letter-spacing:0.02em;font-weight:400;}
+    a{color:var(--ink);text-decoration:none;}
+    a:hover{color:var(--accent);}
+    .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
+    ::selection{background:var(--accent);color:#0a0a0b;}
+
+    /* Responsive: tablet */
+    @media (max-width: 900px){
+      .section{padding-left:32px !important;padding-right:32px !important;}
+      .grid-3{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+      .grid-4{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+      .hero-title{font-size:72px !important;}
+      .contact-title{font-size:48px !important;}
+      .nav{padding-left:32px !important;padding-right:32px !important;}
+      .nav-links{gap:22px !important;}
+    }
+
+    /* Responsive: mobile */
+    @media (max-width: 640px){
+      .section{padding-left:20px !important;padding-right:20px !important;}
+      .nav{padding-left:20px !important;padding-right:20px !important;}
+      .nav-link-text{display:none !important;}
+      .nav-links{gap:14px !important;}
+      .hero-row{flex-direction:column-reverse !important;gap:32px !important;text-align:center;}
+      .hero-copy{align-items:center !important;}
+      .hero-copy p{margin-left:auto !important;margin-right:auto !important;text-align:center;}
+      .hero-avatar{width:220px !important;height:220px !important;}
+      .hero-title{font-size:56px !important;}
+      .hero-ctas{justify-content:center !important;width:100%;}
+      .grid-3{grid-template-columns:1fr !important;}
+      .grid-4{grid-template-columns:1fr !important;}
+      .contact-title{font-size:36px !important;}
+      .contact-ctas{flex-direction:column !important;align-items:stretch !important;}
+      .contact-ctas a{justify-content:center !important;}
+      .footer-row{flex-direction:column !important;gap:8px !important;text-align:center !important;}
+      .writing-row{flex-direction:column !important;align-items:flex-start !important;gap:8px !important;}
+    }
+  </style>
+</head>
+<body>
+
+<div style="background:var(--bg);min-height:100vh;width:100%;overflow-x:hidden;">
+
+  <!-- NAV -->
+  <div class="nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 64px;background:rgba(10,10,11,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="assets/pfp.jpg" alt="Morgan" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--line);flex-shrink:0;">
+      <span class="display" style="font-size:20px;">MORGAN</span>
+    </div>
+    <div class="nav-links" style="display:flex;gap:36px;align-items:center;">
+      <a href="#work" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Work</a>
+      <a href="#art" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Generated Art</a>
+      <a href="#writing" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Writing</a>
+      <a href="#services" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Services</a>
+      <a href="#contact" style="display:inline-flex;align-items:center;padding:9px 20px;border-radius:2px;background:var(--ink);color:#0a0a0b;font-size:14px;font-weight:700;white-space:nowrap;flex-shrink:0;">Hire Me</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="section" style="position:relative;padding:120px 64px 100px;display:flex;flex-direction:column;align-items:flex-start;gap:28px;overflow:hidden;">
+    <div style="position:absolute;top:-200px;right:-150px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,oklch(0.3 0.05 60 / 0.35),transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-260px;left:-180px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,oklch(0.25 0.04 30 / 0.3),transparent 70%);pointer-events:none;"></div>
+
+    <div class="hero-row" style="display:flex;gap:56px;align-items:center;max-width:1200px;width:100%;position:relative;">
+      <div class="hero-copy" style="flex:1;display:flex;flex-direction:column;gap:24px;min-width:0;">
+        <div class="eyebrow" style="color:var(--accent);">Web3 KOL &middot; Community Builder &middot; Generative Artist</div>
+        <h1 class="display hero-title" style="font-size:96px;line-height:0.92;margin:0;color:var(--ink);">MORGAN</h1>
+        <p style="font-size:20px;line-height:1.5;color:var(--ink-dim);max-width:560px;margin:0;">
+          Alpha Academy Owner &middot; KOL &middot; Community Builder &mdash; entering DeFi.
+          I build attention, then turn it into traction for the projects I work with.
+        </p>
+        <div class="hero-ctas" style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;">
+          <a href="#work" style="display:inline-flex;align-items:center;padding:14px 28px;border-radius:2px;background:var(--ink);color:#0a0a0b;font-size:15px;font-weight:700;">See the Work</a>
+          <a href="#contact" style="display:inline-flex;align-items:center;padding:14px 28px;border-radius:2px;border:1px solid var(--line);color:var(--ink);font-size:15px;font-weight:600;">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-avatar" style="flex-shrink:0;width:340px;height:340px;border-radius:50%;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 100px -20px rgba(0,0,0,0.6);">
+        <img src="assets/pfp.jpg" alt="Morgan portrait" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF OF WORK: MARKETING CAMPAIGNS -->
+  <div id="work" class="section" style="padding:100px 64px 40px;max-width:1200px;margin:0 auto;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:12px;">
+      <h2 class="display" style="font-size:48px;margin:0;">Marketing Campaigns</h2>
+      <div class="eyebrow">Proof of Work &middot; 01</div>
+    </div>
+    <p style="color:var(--ink-dim);font-size:17px;max-width:600px;margin:0 0 48px;">Short-form campaign creative built for web3 tokens and community launches &mdash; from concept to the numbers.</p>
+
+    <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;">
+
+      <a href="https://x.com/Morgan_marvi/status/2090366934806057281" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/campaign-tasty.jpg" alt="TASTYCO panda-chef campaign still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <div class="eyebrow" style="color:var(--accent);">$TASTY &middot; @tastyco_io</div>
+          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Not Just Another Meme</h3>
+          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A contest-entry campaign piece built to grab attention and get people to notice &mdash; not just scroll past.</p>
+          <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
+            <div><div style="font-size:20px;font-weight:800;">1.5K</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
+            <div><div style="font-size:20px;font-weight:800;">74</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
+            <div><div style="font-size:20px;font-weight:800;">24</div><div style="font-size:12px;color:var(--ink-faint);">reposts</div></div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://x.com/Morgan_marvi/status/2087632081459527687" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/campaign-greentree.jpg" alt="Green Tree Coin campaign still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <div class="eyebrow" style="color:var(--accent);">Green Tree Coin</div>
+          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">One Tear Brought It Back</h3>
+          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A 46-second narrative ad &mdash; the tree dies, the village loses hope, one boy still believes. Storytelling over stats.</p>
+          <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
+            <div><div style="font-size:20px;font-weight:800;">202</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
+            <div><div style="font-size:20px;font-weight:800;">9</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
+            <div><div style="font-size:20px;font-weight:800;">3</div><div style="font-size:12px;color:var(--ink-faint);">reposts</div></div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://t.me/ShadowSyndicate00" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/campaign-prestige.jpg" alt="Prestige campaign still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <div class="eyebrow" style="color:var(--accent);">Prestige</div>
+          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">The Journey Continues</h3>
+          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A gamified battlefield intro &mdash; a soldier mascot levels up through a war-torn map into a crowned "Prestige" send-off.</p>
+          <div style="font-size:13px;font-weight:600;color:var(--accent);">View on Telegram &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://x.com/Morgan_marvi/status/2085875763379679419" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
+        <div class="eyebrow" style="color:var(--accent);">Adidas Concept</div>
+        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Function Meets Luxury</h3>
+        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A bold streetwear take on the iconic Adidas aesthetic &mdash; clean, futuristic, and built to stand out.</p>
+        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
+          <div><div style="font-size:20px;font-weight:800;">213</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
+          <div><div style="font-size:20px;font-weight:800;">10</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
+          <div><div style="font-size:20px;font-weight:800;">1</div><div style="font-size:12px;color:var(--ink-faint);">repost</div></div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+      </a>
+
+      <a href="https://x.com/Morgan_marvi/status/2081074628844273948" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
+        <div class="eyebrow" style="color:var(--accent);">Punch &middot; @Punch_on_sol</div>
+        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">A Year of Punch</h3>
+        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">From a canvas sketch to a full jungle celebration &mdash; an AI-character birthday campaign built to bring the community together.</p>
+        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
+          <div><div style="font-size:20px;font-weight:800;">305</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
+          <div><div style="font-size:20px;font-weight:800;">21</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
+          <div><div style="font-size:20px;font-weight:800;">13</div><div style="font-size:12px;color:var(--ink-faint);">replies</div></div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+      </a>
+
+      <a href="https://x.com/Morgan_marvi/status/2029612724942987569" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
+        <div class="eyebrow" style="color:var(--accent);">$PENQUIQUI</div>
+        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Every Great Mission&hellip;</h3>
+        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">The origin-story thread for an AI penguin on an accidental mission &mdash; attention is cheap, hype is rented, loyalty is rare.</p>
+        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
+          <div><div style="font-size:20px;font-weight:800;">5.5K</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
+          <div><div style="font-size:20px;font-weight:800;">24</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
+          <div><div style="font-size:20px;font-weight:800;">9</div><div style="font-size:12px;color:var(--ink-faint);">reposts</div></div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+      </a>
+
+      <a href="https://x.com/Morgan_marvi/status/1977511626929832137" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
+        <div class="eyebrow" style="color:var(--accent);">$JOY &middot; @GenerousGerald_</div>
+        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Chase Happiness, Not Charts</h3>
+        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">The most positive movement on Solana &mdash; a two-post campaign built around good vibes and strong holders.</p>
+        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
+          <div><div style="font-size:20px;font-weight:800;">75</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
+          <div><div style="font-size:20px;font-weight:800;">4</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
+          <div><div style="font-size:20px;font-weight:800;">6</div><div style="font-size:12px;color:var(--ink-faint);">replies</div></div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+      </a>
+
+      <a href="https://x.com/Morgan_marvi/status/2067546240271761459" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/campaign-pixverse.jpg" alt="Pixverse AI clip still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
+        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <div class="eyebrow" style="color:var(--accent);">AI Clip &middot; w/ @pixverse</div>
+          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Late Night Static</h3>
+          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A short cinematic AI clip built with Pixverse &mdash; mood and motion over message.</p>
+          <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- GENERATED ART -->
+  <div id="art" class="section" style="padding:80px 64px 40px;max-width:1200px;margin:0 auto;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:12px;">
+      <h2 class="display" style="font-size:48px;margin:0;">Generated Art</h2>
+      <div class="eyebrow">Proof of Work &middot; 02</div>
+    </div>
+    <p style="color:var(--ink-dim);font-size:17px;max-width:640px;margin:0 0 48px;">A dark-fantasy card series and character studies built entirely through prompt design &mdash; original lore, consistent world, gallery-grade output.</p>
+
+    <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/tarot-primordial-horn.jpg" alt="The Primordial Horn" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">The Primordial Horn</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/tarot-heavenly-codex.jpg" alt="Heavenly Codex" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">Heavenly Codex</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/tarot-sin-collector.jpg" alt="The Sin Collector" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">The Sin Collector</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="art-more" class="grid-3" style="display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px;">
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/tarot-invisible-sovereign.jpg" alt="The Invisible Sovereign" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">The Invisible Sovereign</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/tarot-power-is-earned.jpg" alt="Power Is Earned" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">Power Is Earned</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/art-thorned-bloom.jpg" alt="Thorned Bloom" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">Thorned Bloom</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/mascot-halo-01.jpg" alt="Halo & Horns" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">Halo &amp; Horns</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/mascot-halo-02.jpg" alt="Judgment" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">Judgment</div>
+        </div>
+      </div>
+      <div style="border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
+        <img src="assets/mascot-halo-03.jpg" alt="The Watcher" style="width:100%;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
+          <div style="font-weight:700;font-size:15px;">The Watcher</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;">
+      <button id="art-toggle-btn" onclick="(function(){var m=document.getElementById('art-more');var b=document.getElementById('art-toggle-btn');var open=m.style.display==='grid';m.style.display=open?'none':'grid';b.textContent=open?'See More':'See Less';if(!open){m.scrollIntoView({behavior:'smooth',block:'nearest'});}})()" style="cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--ink);font-size:14px;font-weight:600;padding:12px 32px;border-radius:2px;font-family:'Inter',system-ui,sans-serif;">See More</button>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section" style="padding:100px 64px;max-width:900px;margin:0 auto;">
+    <div class="eyebrow" style="margin-bottom:20px;">About</div>
+    <p style="font-size:28px;line-height:1.5;font-weight:500;color:var(--ink);margin:0;">
+      "Me in the space building alone, hunting alone. Making my W's alone and L's alone."
+    </p>
+    <p style="font-size:17px;line-height:1.7;color:var(--ink-dim);margin:28px 0 0;">
+      I started web3 as a raider &mdash; making $15 a week and happy with that. Somewhere along the way I figured out
+      something small to build, and kept building it. No agency, no team handed to me on day one &mdash; just spaces,
+      timelines, and a lot of reps. That's the same energy every project gets when I work with them: no hesitation,
+      just attention turned into traction.
+    </p>
+  </div>
+
+  <!-- WRITING -->
+  <div id="writing" class="section" style="padding:60px 64px 100px;max-width:900px;margin:0 auto;">
+    <h2 class="display" style="font-size:40px;margin:0 0 8px;">Writing &amp; Alpha</h2>
+    <p style="color:var(--ink-dim);font-size:16px;margin:0 0 40px;">Threads on attention, hype, and building in public.</p>
+
+    <div style="display:flex;flex-direction:column;">
+      <a href="https://x.com/Morgan_marvi/status/2039994888515727530" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:20px;">
+        <div>
+          <div style="font-weight:700;font-size:17px;margin-bottom:4px;">Alpha Doesn't Wait For You</div>
+          <div style="color:var(--ink-faint);font-size:14px;">The market doesn't reward hesitation &mdash; it rewards people who move early and pay attention.</div>
+        </div>
+        <span style="color:var(--ink-faint);font-size:20px;flex-shrink:0;">&rarr;</span>
+      </a>
+      <a href="https://x.com/Morgan_marvi/status/2029612724942987569" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:20px;">
+        <div>
+          <div style="font-weight:700;font-size:17px;margin-bottom:4px;">Every Great Mission Begins With an Accident</div>
+          <div style="color:var(--ink-faint);font-size:14px;">The origin story behind $PENQUIQUI &mdash; an AI, a penguin, and a mission that was never supposed to start.</div>
+        </div>
+        <span style="color:var(--ink-faint);font-size:20px;flex-shrink:0;">&rarr;</span>
+      </a>
+      <a href="https://x.com/Morgan_marvi/status/2028425528735076697" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:20px;">
+        <div>
+          <div style="font-weight:700;font-size:17px;margin-bottom:4px;">Attention Is Cheap. Loyalty Is Rare.</div>
+          <div style="color:var(--ink-faint);font-size:14px;">On why movements outlast trends in crypto &mdash; and how to build one.</div>
+        </div>
+        <span style="color:var(--ink-faint);font-size:20px;flex-shrink:0;">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" class="section" style="padding:20px 64px 100px;max-width:1200px;margin:0 auto;">
+    <h2 class="display" style="font-size:40px;margin:0 0 40px;">Services</h2>
+    <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);">
+      <div style="background:var(--bg);padding:32px 24px;">
+        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">01</div>
+        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Community Building</div>
+        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Growing and running active, loyal communities from zero.</div>
+      </div>
+      <div style="background:var(--bg);padding:32px 24px;">
+        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">02</div>
+        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">KOL &amp; Raiding</div>
+        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Spaces, timeline pushes, and coordinated visibility that actually converts.</div>
+      </div>
+      <div style="background:var(--bg);padding:32px 24px;">
+        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">03</div>
+        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Campaign Creative</div>
+        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Short-form video and narrative concepts built for launches and drops.</div>
+      </div>
+      <div style="background:var(--bg);padding:32px 24px;">
+        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">04</div>
+        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Copywriting</div>
+        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Threads, launch copy, and positioning that sounds like a person, not a press release.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="section" style="padding:100px 64px 60px;text-align:center;">
+    <div class="eyebrow" style="margin-bottom:20px;">Let's Work</div>
+    <h2 class="display contact-title" style="font-size:64px;margin:0 0 28px;">Entering DeFi.<br>Building With You.</h2>
+    <p style="color:var(--ink-dim);font-size:17px;max-width:520px;margin:0 auto 40px;">If your project needs attention that turns into traction, this is where it starts.</p>
+    <div class="contact-ctas" style="display:flex;gap:16px;justify-content:center;">
+      <a href="https://x.com/Morgan_marvi" style="display:inline-flex;align-items:center;padding:16px 32px;border-radius:2px;background:var(--ink);color:#0a0a0b;font-size:15px;font-weight:700;">Message on X</a>
+      <a href="https://t.me/ShadowSyndicate00" style="display:inline-flex;align-items:center;padding:16px 32px;border-radius:2px;border:1px solid var(--line);color:var(--ink);font-size:15px;font-weight:600;">Telegram</a>
+    </div>
+  </div>
+
+  <div class="footer-row section" style="padding:32px 64px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+    <div style="color:var(--ink-faint);font-size:13px;">&copy; Morgan &middot; 2026</div>
+    <div style="color:var(--ink-faint);font-size:13px;">@Morgan_marvi</div>
+  </div>
+
+</div>
+
+</body>
+</html>
