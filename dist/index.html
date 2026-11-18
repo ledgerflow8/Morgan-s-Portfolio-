@@ -9,403 +9,410 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0a0a0b;
-      --bg-raised:#131315;
-      --line:#232326;
-      --ink:#f2f1ef;
-      --ink-dim:#a5a4a1;
-      --ink-faint:#6f6e6c;
-      --accent:oklch(0.72 0.16 85);
-      --accent-2:oklch(0.62 0.14 30);
+      --bg:#040404;
+      --bg-raised:#121213;
+      --bg-raised-2:#19191a;
+      --line:#242425;
+      --ink:#f3f1ee;
+      --ink-dim:#9c9a97;
+      --ink-faint:#656362;
+      --accent:#e8364f;
+      --accent-dim:#5c1620;
     }
     *{box-sizing:border-box;}
     body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;}
-    h1,h2,h3,.display{font-family:'Bebas Neue','Inter',system-ui,sans-serif;letter-spacing:0.02em;font-weight:400;}
+    h1,h2,h3,.display{font-family:'Fraunces','Inter',system-ui,serif;letter-spacing:-0.015em;font-weight:560;font-optical-sizing:auto;}
+    .hand{font-family:'Caveat',cursive;font-weight:700;}
     a{color:var(--ink);text-decoration:none;}
     a:hover{color:var(--accent);}
-    .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
-    ::selection{background:var(--accent);color:#0a0a0b;}
+    .eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;font-family:'Inter',system-ui,sans-serif;}
+    ::selection{background:var(--accent);color:#040404;}
+    .lines{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 120px);}
+    .grain{position:absolute;inset:0;pointer-events:none;opacity:0.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+    .card{background:var(--bg-raised);border:1px solid var(--line);border-radius:22px;transition:transform .2s ease,border-color .2s ease;}
+    @media (hover:hover) and (pointer:fine){
+      a.card:hover{border-color:var(--accent-dim);transform:translateY(-3px);}
+      .pill-btn:hover{transform:translateY(-1px);}
+    }
+    a.card:active{transform:translateY(0);}
+    .icon-btn{width:40px;height:40px;border-radius:50%;background:rgba(18,18,19,0.92);backdrop-filter:blur(6px);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink);font-size:14px;}
+    .icon-btn:hover{color:var(--accent);border-color:var(--accent-dim);}
+    .pill-btn{display:inline-flex;align-items:center;gap:7px;padding:14px 28px;border-radius:999px;font-size:14px;font-weight:600;white-space:nowrap;background:var(--bg-raised-2);border:1px solid var(--line);color:var(--ink);}
+    .pill-btn:hover{color:var(--accent);border-color:var(--accent-dim);}
+    .duotone-wrap{position:relative;}
+    .duotone{filter:grayscale(1) contrast(1.2) brightness(0.88);}
+    .duotone-tint{position:absolute;inset:0;background:linear-gradient(165deg,rgba(232,54,79,0.5),rgba(10,5,8,0.65));mix-blend-mode:color;pointer-events:none;}
+
+    /* Work: lead case study, image contained within the panel */
+    .lead-case{display:flex;align-items:stretch;overflow:hidden;}
+    .lead-case-copy{flex:1;padding:44px;display:flex;flex-direction:column;gap:14px;min-width:0;}
+    .lead-case-media{width:38%;flex-shrink:0;}
+    .lead-case-media img{width:100%;height:100%;display:block;object-fit:cover;}
+    .work-card{overflow:hidden;display:flex;flex-direction:column;}
+    .work-card-media{aspect-ratio:16/10;overflow:hidden;}
+    .work-card-media img{width:100%;height:100%;display:block;object-fit:cover;}
+    .work-card-copy{padding:24px 24px 22px;display:flex;flex-direction:column;gap:6px;flex-grow:1;}
+
+    /* vertical dotted timeline */
+    .vt{position:relative;padding-left:20px;border-left:1px solid var(--line);}
+    .vt-item{position:relative;padding-bottom:26px;}
+    .vt-item:last-child{padding-bottom:0;}
+    .vt-dot{position:absolute;left:-25px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--ink-faint);border:2px solid var(--bg-raised);box-shadow:0 0 0 1px var(--line);}
+    .vt-item.now .vt-dot{background:var(--accent);}
+
+    .tilt-1{transform:rotate(-1.4deg);}
+    .tilt-2{transform:rotate(1.1deg);}
+    .tilt-3{transform:rotate(-0.6deg);}
 
     /* Responsive: tablet */
-    @media (max-width: 900px){
+    @media (max-width: 920px){
       .section{padding-left:32px !important;padding-right:32px !important;}
-      .grid-3{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
       .grid-4{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
-      .hero-title{font-size:72px !important;}
-      .contact-title{font-size:48px !important;}
-      .nav{padding-left:32px !important;padding-right:32px !important;}
-      .nav-links{gap:22px !important;}
+      .art-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+      .hero-title{font-size:48px !important;}
+      #hero{padding:120px 32px 90px !important;}
+      .contact-title{font-size:32px !important;}
+      #contact{padding:100px 32px 70px !important;}
+      .lead-case{flex-direction:column !important;}
+      .lead-case-media{width:100% !important;height:240px;}
+      .about-row{flex-direction:column !important;}
+      .about-photo{width:100% !important;height:280px !important;}
+      .misc-row{flex-direction:column !important;}
+      #about{padding:70px 32px !important;}
+      #art{padding:70px 32px 20px !important;}
+      #services{padding:10px 32px 70px !important;}
     }
 
     /* Responsive: mobile */
     @media (max-width: 640px){
-      .section{padding-left:20px !important;padding-right:20px !important;}
-      .nav{padding-left:20px !important;padding-right:20px !important;}
+      .section{padding-left:18px !important;padding-right:18px !important;}
+      .nav-pill{padding-left:14px !important;padding-right:10px !important;}
       .nav-link-text{display:none !important;}
-      .nav-links{gap:14px !important;}
-      .hero-row{flex-direction:column-reverse !important;gap:32px !important;text-align:center;}
-      .hero-copy{align-items:center !important;}
-      .hero-copy p{margin-left:auto !important;margin-right:auto !important;text-align:center;}
-      .hero-avatar{width:220px !important;height:220px !important;}
-      .hero-title{font-size:56px !important;}
-      .hero-ctas{justify-content:center !important;width:100%;}
-      .grid-3{grid-template-columns:1fr !important;}
+      .nav-links{gap:10px !important;}
+      #hero{padding:96px 18px 64px !important;}
+      .hero-title{font-size:34px !important;}
+      .grid-2{grid-template-columns:1fr !important;}
       .grid-4{grid-template-columns:1fr !important;}
-      .contact-title{font-size:36px !important;}
-      .contact-ctas{flex-direction:column !important;align-items:stretch !important;}
-      .contact-ctas a{justify-content:center !important;}
-      .footer-row{flex-direction:column !important;gap:8px !important;text-align:center !important;}
+      .art-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px !important;}
+      .section-title{font-size:26px !important;margin-bottom:28px !important;}
+      #about{padding:56px 18px !important;}
+      #art{padding:56px 18px 16px !important;}
+      #services{padding:8px 18px 56px !important;}
+      #writing{padding:24px 18px 56px !important;}
+      .lead-case-copy{padding:28px 22px !important;gap:12px !important;}
+      .work-card-copy{padding:20px 20px 20px !important;}
+      .about-bio{padding:28px !important;}
+      .journey-card{padding:28px !important;}
+      .misc-card{padding:22px !important;}
+      .contact-title{font-size:26px !important;}
+      #contact{padding:84px 18px 56px !important;}
+      .contact-ctas{flex-wrap:wrap !important;}
       .writing-row{flex-direction:column !important;align-items:flex-start !important;gap:8px !important;}
+    }
+
+    /* Responsive: small phones */
+    @media (max-width: 400px){
+      .art-grid{grid-template-columns:1fr !important;}
+      .hero-title{font-size:30px !important;}
     }
   </style>
 </head>
 <body>
 
-<div style="background:var(--bg);min-height:100vh;width:100%;overflow-x:hidden;">
+<div style="background:var(--bg);min-height:100vh;width:100%;overflow-x:hidden;position:relative;">
 
   <!-- NAV -->
-  <div class="nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 64px;background:rgba(10,10,11,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <img src="assets/pfp.jpg" alt="Morgan" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--line);flex-shrink:0;">
-      <span class="display" style="font-size:20px;">MORGAN</span>
-    </div>
-    <div class="nav-links" style="display:flex;gap:36px;align-items:center;">
-      <a href="#work" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Work</a>
-      <a href="#art" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Generated Art</a>
-      <a href="#writing" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Writing</a>
-      <a href="#services" class="nav-link-text" style="font-size:14px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Services</a>
-      <a href="#contact" style="display:inline-flex;align-items:center;padding:9px 20px;border-radius:2px;background:var(--ink);color:#0a0a0b;font-size:14px;font-weight:700;white-space:nowrap;flex-shrink:0;">Hire Me</a>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <div class="section" style="position:relative;padding:120px 64px 100px;display:flex;flex-direction:column;align-items:flex-start;gap:28px;overflow:hidden;">
-    <div style="position:absolute;top:-200px;right:-150px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,oklch(0.3 0.05 60 / 0.35),transparent 70%);pointer-events:none;"></div>
-    <div style="position:absolute;bottom:-260px;left:-180px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,oklch(0.25 0.04 30 / 0.3),transparent 70%);pointer-events:none;"></div>
-
-    <div class="hero-row" style="display:flex;gap:56px;align-items:center;max-width:1200px;width:100%;position:relative;">
-      <div class="hero-copy" style="flex:1;display:flex;flex-direction:column;gap:24px;min-width:0;">
-        <div class="eyebrow" style="color:var(--accent);">Web3 KOL &middot; Community Builder &middot; Generative Artist</div>
-        <h1 class="display hero-title" style="font-size:96px;line-height:0.92;margin:0;color:var(--ink);">MORGAN</h1>
-        <p style="font-size:20px;line-height:1.5;color:var(--ink-dim);max-width:560px;margin:0;">
-          Alpha Academy Owner &middot; KOL &middot; Community Builder &mdash; entering DeFi.
-          I build attention, then turn it into traction for the projects I work with.
-        </p>
-        <div class="hero-ctas" style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;">
-          <a href="#work" style="display:inline-flex;align-items:center;padding:14px 28px;border-radius:2px;background:var(--ink);color:#0a0a0b;font-size:15px;font-weight:700;">See the Work</a>
-          <a href="#contact" style="display:inline-flex;align-items:center;padding:14px 28px;border-radius:2px;border:1px solid var(--line);color:var(--ink);font-size:15px;font-weight:600;">Get in Touch</a>
-        </div>
-      </div>
-      <div class="hero-avatar" style="flex-shrink:0;width:340px;height:340px;border-radius:50%;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 100px -20px rgba(0,0,0,0.6);">
-        <img src="assets/pfp.jpg" alt="Morgan portrait" style="width:100%;height:100%;object-fit:cover;">
+  <div style="position:sticky;top:16px;z-index:50;display:flex;justify-content:center;padding:0 16px;">
+    <div class="nav-pill" style="display:flex;align-items:center;gap:4px;padding:8px 10px 8px 10px;border-radius:999px;background:rgba(20,20,22,0.8);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 12px 30px -10px rgba(0,0,0,0.6);">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--ink);color:#0a0a0b;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:15px;flex-shrink:0;">M</div>
+      <div style="width:1px;height:18px;background:var(--line);margin:0 10px;"></div>
+      <div class="nav-links" style="display:flex;gap:20px;align-items:center;">
+        <a href="#work" class="nav-link-text" style="font-size:13px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Work</a>
+        <a href="#about" class="nav-link-text" style="font-size:13px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">About me</a>
+        <a href="#writing" class="nav-link-text" style="font-size:13px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Writing</a>
+        <a href="#services" class="nav-link-text" style="font-size:13px;font-weight:500;color:var(--ink-dim);white-space:nowrap;">Services</a>
+        <a href="#contact" style="font-size:13px;font-weight:500;color:var(--ink-dim);white-space:nowrap;padding-right:8px;">Contact</a>
       </div>
     </div>
   </div>
 
-  <!-- PROOF OF WORK: MARKETING CAMPAIGNS -->
-  <div id="work" class="section" style="padding:100px 64px 40px;max-width:1200px;margin:0 auto;">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:12px;">
-      <h2 class="display" style="font-size:48px;margin:0;">Marketing Campaigns</h2>
-      <div class="eyebrow">Proof of Work &middot; 01</div>
+  <!-- HERO: centered, no photo, no eyebrow -->
+  <div id="hero" class="section" style="position:relative;padding:150px 64px 120px;overflow:hidden;text-align:center;">
+    <div style="position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,var(--accent) 0%,var(--accent-dim) 40%,transparent 72%);opacity:0.5;filter:blur(14px);pointer-events:none;"></div>
+    <div class="lines" style="opacity:0.6;"></div>
+    <div class="grain"></div>
+    <div style="position:relative;max-width:720px;margin:0 auto;">
+      <h1 class="display hero-title" style="font-size:64px;line-height:1.12;margin:0 0 22px;color:var(--ink);">Hi there,<br>I am Morgan</h1>
+      <p style="font-size:16px;line-height:1.65;color:var(--ink-dim);max-width:520px;margin:0 auto 32px;">
+        A Web3 KOL and campaign creative with three years in the space. Currently running Alpha Academy and easing into DeFi, one project at a time.
+      </p>
+      <a href="#contact" class="pill-btn">Get in touch</a>
     </div>
-    <p style="color:var(--ink-dim);font-size:17px;max-width:600px;margin:0 0 48px;">Short-form campaign creative built for web3 tokens and community launches &mdash; from concept to the numbers.</p>
+  </div>
 
-    <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;">
+  <!-- PROOF OF WORK -->
+  <div id="work" class="section" style="padding:40px 64px 40px;max-width:1180px;margin:0 auto;">
+    <h2 class="display section-title" style="font-size:38px;margin:0 0 48px;text-align:center;">A few things I've shipped</h2>
 
-      <a href="https://x.com/Morgan_marvi/status/2090366934806057281" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
-        <img src="assets/campaign-tasty.jpg" alt="TASTYCO panda-chef campaign still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
-        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
-          <div class="eyebrow" style="color:var(--accent);">$TASTY &middot; @tastyco_io</div>
-          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Not Just Another Meme</h3>
-          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A contest-entry campaign piece built to grab attention and get people to notice &mdash; not just scroll past.</p>
-          <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
-            <div><div style="font-size:20px;font-weight:800;">1.5K</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
-            <div><div style="font-size:20px;font-weight:800;">74</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
-            <div><div style="font-size:20px;font-weight:800;">24</div><div style="font-size:12px;color:var(--ink-faint);">reposts</div></div>
-          </div>
-          <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+    <!-- LEAD CASE STUDY: one, full width, image contained in the panel -->
+    <a href="https://t.me/ShadowSyndicate00" target="_blank" rel="noopener" class="card lead-case" style="margin-bottom:28px;text-decoration:none;">
+      <div class="lead-case-copy">
+        <div class="eyebrow" style="color:var(--ink-faint);">$PBUG &middot; 2026</div>
+        <h3 style="font-size:28px;margin:0;color:var(--ink);">In PBUG We Trust</h3>
+        <p style="color:var(--ink-dim);font-size:15px;line-height:1.6;margin:0;max-width:380px;font-weight:400;">A full brand push for the $PBUG mascot &mdash; a dollar-bill parody flex, a yacht lifestyle cutdown, and a suited-up hero shot. Built to make a meme coin feel like old money.</p>
+        <div class="icon-btn" style="margin-top:auto;">&rarr;</div>
+      </div>
+      <div class="lead-case-media">
+        <img src="assets/campaign-pbug.jpg" alt="$PBUG dollar bill campaign still">
+      </div>
+    </a>
+
+    <!-- GRID: rest of the campaigns, image contained at the top of each card -->
+    <div class="grid-2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start;">
+
+      <a href="https://t.me/ShadowSyndicate00" target="_blank" rel="noopener" class="card work-card" style="text-decoration:none;">
+        <div class="work-card-media"><img src="assets/campaign-orderup.jpg" alt="OrderUp doorstep delivery still"></div>
+        <div class="work-card-copy">
+          <div class="eyebrow" style="color:var(--ink-faint);">OrderUp &middot; 2026</div>
+          <h3 style="font-size:19px;margin:0;color:var(--ink);">Your Local Favourites. Delivered.</h3>
+          <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;margin:0;flex-grow:1;">A cinematic launch ad plus an app-walkthrough cutdown for a food delivery app &mdash; kitchen to doorstep.</p>
+          <div class="icon-btn" style="margin-top:4px;width:34px;height:34px;font-size:13px;">&rarr;</div>
         </div>
       </a>
 
-      <a href="https://x.com/Morgan_marvi/status/2087632081459527687" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
-        <img src="assets/campaign-greentree.jpg" alt="Green Tree Coin campaign still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
-        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
-          <div class="eyebrow" style="color:var(--accent);">Green Tree Coin</div>
-          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">One Tear Brought It Back</h3>
-          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A 46-second narrative ad &mdash; the tree dies, the village loses hope, one boy still believes. Storytelling over stats.</p>
-          <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
-            <div><div style="font-size:20px;font-weight:800;">202</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
-            <div><div style="font-size:20px;font-weight:800;">9</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
-            <div><div style="font-size:20px;font-weight:800;">3</div><div style="font-size:12px;color:var(--ink-faint);">reposts</div></div>
-          </div>
-          <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
+      <a href="https://x.com/Morgan_marvi/status/2090366934806057281" target="_blank" rel="noopener" class="card work-card" style="text-decoration:none;">
+        <div class="work-card-media"><img src="assets/campaign-tasty.jpg" alt="TASTYCO panda-chef campaign still"></div>
+        <div class="work-card-copy">
+          <div class="eyebrow" style="color:var(--ink-faint);">$TASTY &middot; 2026</div>
+          <h3 style="font-size:19px;margin:0;color:var(--ink);">Not Just Another Meme</h3>
+          <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;margin:0;flex-grow:1;">A contest-entry piece built to grab attention and get people to notice.</p>
+          <div class="icon-btn" style="margin-top:4px;width:34px;height:34px;font-size:13px;">&rarr;</div>
         </div>
       </a>
 
-      <a href="https://t.me/ShadowSyndicate00" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
-        <img src="assets/campaign-prestige.jpg" alt="Prestige campaign still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
-        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
-          <div class="eyebrow" style="color:var(--accent);">Prestige</div>
-          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">The Journey Continues</h3>
-          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A gamified battlefield intro &mdash; a soldier mascot levels up through a war-torn map into a crowned "Prestige" send-off.</p>
-          <div style="font-size:13px;font-weight:600;color:var(--accent);">View on Telegram &rarr;</div>
+      <a href="https://x.com/Morgan_marvi/status/2087632081459527687" target="_blank" rel="noopener" class="card work-card" style="text-decoration:none;">
+        <div class="work-card-media"><img src="assets/campaign-greentree.jpg" alt="Green Tree Coin campaign still"></div>
+        <div class="work-card-copy">
+          <div class="eyebrow" style="color:var(--ink-faint);">Green Tree Coin &middot; 2026</div>
+          <h3 style="font-size:19px;margin:0;color:var(--ink);">One Tear Brought It Back</h3>
+          <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;margin:0;flex-grow:1;">A 46-second narrative ad &mdash; storytelling over stats.</p>
+          <div class="icon-btn" style="margin-top:4px;width:34px;height:34px;font-size:13px;">&rarr;</div>
         </div>
       </a>
 
-      <a href="https://x.com/Morgan_marvi/status/2085875763379679419" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
-        <div class="eyebrow" style="color:var(--accent);">Adidas Concept</div>
-        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Function Meets Luxury</h3>
-        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A bold streetwear take on the iconic Adidas aesthetic &mdash; clean, futuristic, and built to stand out.</p>
-        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
-          <div><div style="font-size:20px;font-weight:800;">213</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
-          <div><div style="font-size:20px;font-weight:800;">10</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
-          <div><div style="font-size:20px;font-weight:800;">1</div><div style="font-size:12px;color:var(--ink-faint);">repost</div></div>
+      <a href="https://t.me/ShadowSyndicate00" target="_blank" rel="noopener" class="card work-card" style="text-decoration:none;">
+        <div class="work-card-media"><img src="assets/campaign-prestige.jpg" alt="Prestige campaign still"></div>
+        <div class="work-card-copy">
+          <div class="eyebrow" style="color:var(--ink-faint);">Prestige &middot; 2026</div>
+          <h3 style="font-size:19px;margin:0;color:var(--ink);">The Journey Continues</h3>
+          <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;margin:0;flex-grow:1;">A gamified battlefield intro ending in a crowned send-off.</p>
+          <div class="icon-btn" style="margin-top:4px;width:34px;height:34px;font-size:13px;">&rarr;</div>
         </div>
-        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
       </a>
 
-      <a href="https://x.com/Morgan_marvi/status/2081074628844273948" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
-        <div class="eyebrow" style="color:var(--accent);">Punch &middot; @Punch_on_sol</div>
-        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">A Year of Punch</h3>
-        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">From a canvas sketch to a full jungle celebration &mdash; an AI-character birthday campaign built to bring the community together.</p>
-        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
-          <div><div style="font-size:20px;font-weight:800;">305</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
-          <div><div style="font-size:20px;font-weight:800;">21</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
-          <div><div style="font-size:20px;font-weight:800;">13</div><div style="font-size:12px;color:var(--ink-faint);">replies</div></div>
+      <a href="https://x.com/Morgan_marvi/status/2067546240271761459" target="_blank" rel="noopener" class="card work-card" style="text-decoration:none;">
+        <div class="work-card-media"><img src="assets/campaign-pixverse.jpg" alt="Pixverse AI clip still"></div>
+        <div class="work-card-copy">
+          <div class="eyebrow" style="color:var(--ink-faint);">AI Clip &middot; @pixverse</div>
+          <h3 style="font-size:19px;margin:0;color:var(--ink);">Late Night Static</h3>
+          <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;margin:0;flex-grow:1;">A short cinematic AI clip &mdash; mood and motion over message.</p>
+          <div class="icon-btn" style="margin-top:4px;width:34px;height:34px;font-size:13px;">&rarr;</div>
         </div>
-        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
       </a>
 
-      <a href="https://x.com/Morgan_marvi/status/2029612724942987569" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
-        <div class="eyebrow" style="color:var(--accent);">$PENQUIQUI</div>
-        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Every Great Mission&hellip;</h3>
-        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">The origin-story thread for an AI penguin on an accidental mission &mdash; attention is cheap, hype is rented, loyalty is rare.</p>
-        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
-          <div><div style="font-size:20px;font-weight:800;">5.5K</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
-          <div><div style="font-size:20px;font-weight:800;">24</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
-          <div><div style="font-size:20px;font-weight:800;">9</div><div style="font-size:12px;color:var(--ink-faint);">reposts</div></div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
-      </a>
-
-      <a href="https://x.com/Morgan_marvi/status/1977511626929832137" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;padding:28px;display:flex;flex-direction:column;gap:14px;">
-        <div class="eyebrow" style="color:var(--accent);">$JOY &middot; @GenerousGerald_</div>
-        <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Chase Happiness, Not Charts</h3>
-        <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">The most positive movement on Solana &mdash; a two-post campaign built around good vibes and strong holders.</p>
-        <div style="display:flex;gap:20px;padding-top:12px;border-top:1px solid var(--line);">
-          <div><div style="font-size:20px;font-weight:800;">75</div><div style="font-size:12px;color:var(--ink-faint);">views</div></div>
-          <div><div style="font-size:20px;font-weight:800;">4</div><div style="font-size:12px;color:var(--ink-faint);">likes</div></div>
-          <div><div style="font-size:20px;font-weight:800;">6</div><div style="font-size:12px;color:var(--ink-faint);">replies</div></div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
-      </a>
-
-      <a href="https://x.com/Morgan_marvi/status/2067546240271761459" target="_blank" rel="noopener" class="card" style="background:var(--bg-raised);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
-        <img src="assets/campaign-pixverse.jpg" alt="Pixverse AI clip still" style="width:100%;display:block;aspect-ratio:16/10;object-fit:cover;">
-        <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
-          <div class="eyebrow" style="color:var(--accent);">AI Clip &middot; w/ @pixverse</div>
-          <h3 style="font-size:22px;margin:0;font-weight:700;color:var(--ink);">Late Night Static</h3>
-          <p style="color:var(--ink-dim);font-size:15px;line-height:1.5;margin:0;flex-grow:1;">A short cinematic AI clip built with Pixverse &mdash; mood and motion over message.</p>
-          <div style="font-size:13px;font-weight:600;color:var(--accent);">View post &rarr;</div>
-        </div>
+      <a href="https://x.com/Morgan_marvi/status/2081074628844273948" target="_blank" rel="noopener" class="card work-card-copy" style="text-decoration:none;background:var(--bg-raised);border:1px solid var(--line);border-radius:22px;">
+        <div class="eyebrow" style="color:var(--ink-faint);">Punch &middot; 2025</div>
+        <h3 style="font-size:19px;margin:0;color:var(--ink);">A Year of Punch</h3>
+        <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;margin:0;flex-grow:1;">From a canvas sketch to a full jungle celebration, for @Punch_on_sol.</p>
+        <div class="icon-btn" style="margin-top:4px;width:34px;height:34px;font-size:13px;">&rarr;</div>
       </a>
 
     </div>
   </div>
 
   <!-- GENERATED ART -->
-  <div id="art" class="section" style="padding:80px 64px 40px;max-width:1200px;margin:0 auto;">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:12px;">
-      <h2 class="display" style="font-size:48px;margin:0;">Generated Art</h2>
-      <div class="eyebrow">Proof of Work &middot; 02</div>
-    </div>
-    <p style="color:var(--ink-dim);font-size:17px;max-width:640px;margin:0 0 48px;">A dark-fantasy card series and character studies built entirely through prompt design &mdash; original lore, consistent world, gallery-grade output.</p>
-
-    <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
-      <div class="art-tile" onclick="openArtModal('assets/tarot-primordial-horn.jpg','The Primordial Horn')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/tarot-primordial-horn.jpg" alt="The Primordial Horn" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">The Primordial Horn</div>
-        </div>
+  <div id="art" class="section" style="padding:100px 64px 40px;max-width:1180px;margin:0 auto;">
+    <h2 class="display section-title" style="font-size:36px;margin:0 0 48px;text-align:center;">Generated art</h2>
+    <div class="art-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start;">
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/tarot-primordial-horn.jpg" alt="The Primordial Horn" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">The Primordial Horn</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/tarot-heavenly-codex.jpg','Heavenly Codex')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/tarot-heavenly-codex.jpg" alt="Heavenly Codex" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">Heavenly Codex</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/tarot-heavenly-codex.jpg" alt="Heavenly Codex" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">Heavenly Codex</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/tarot-sin-collector.jpg','The Sin Collector')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/tarot-sin-collector.jpg" alt="The Sin Collector" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">The Sin Collector</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/tarot-sin-collector.jpg" alt="The Sin Collector" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">The Sin Collector</div></div>
       </div>
     </div>
-
-    <div id="art-more" class="grid-3" style="display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px;">
-      <div class="art-tile" onclick="openArtModal('assets/tarot-invisible-sovereign.jpg','The Invisible Sovereign')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/tarot-invisible-sovereign.jpg" alt="The Invisible Sovereign" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">The Invisible Sovereign</div>
-        </div>
+    <div id="art-more" class="art-grid" style="display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px;align-items:start;">
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/tarot-invisible-sovereign.jpg" alt="The Invisible Sovereign" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">The Invisible Sovereign</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/tarot-power-is-earned.jpg','Power Is Earned')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/tarot-power-is-earned.jpg" alt="Power Is Earned" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">Power Is Earned</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/tarot-power-is-earned.jpg" alt="Power Is Earned" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">Power Is Earned</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/art-thorned-bloom.jpg','Thorned Bloom')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/art-thorned-bloom.jpg" alt="Thorned Bloom" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">Thorned Bloom</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/art-thorned-bloom.jpg" alt="Thorned Bloom" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">Thorned Bloom</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/mascot-halo-01.jpg','Halo & Horns')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/mascot-halo-01.jpg" alt="Halo & Horns" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">Halo &amp; Horns</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/mascot-halo-01.jpg" alt="Halo & Horns" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">Halo &amp; Horns</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/mascot-halo-02.jpg','Judgment')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/mascot-halo-02.jpg" alt="Judgment" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">Judgment</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/mascot-halo-02.jpg" alt="Judgment" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">Judgment</div></div>
       </div>
-      <div class="art-tile" onclick="openArtModal('assets/mascot-halo-03.jpg','The Watcher')" style="cursor:zoom-in;border-radius:4px;overflow:hidden;border:1px solid var(--line);position:relative;">
-        <img src="assets/mascot-halo-03.jpg" alt="The Watcher" style="width:100%;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.85));">
-          <div style="font-weight:700;font-size:15px;">The Watcher</div>
-        </div>
+      <div class="card" style="overflow:hidden;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="assets/mascot-halo-03.jpg" alt="The Watcher" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:16px 18px;"><div style="font-weight:700;font-size:14px;">The Watcher</div></div>
       </div>
     </div>
-
-    <div style="text-align:center;margin-top:40px;">
-      <button id="art-toggle-btn" onclick="(function(){var m=document.getElementById('art-more');var b=document.getElementById('art-toggle-btn');var open=m.style.display==='grid';m.style.display=open?'none':'grid';b.textContent=open?'See More':'See Less';if(!open){m.scrollIntoView({behavior:'smooth',block:'nearest'});}})()" style="cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--ink);font-size:14px;font-weight:600;padding:12px 32px;border-radius:2px;font-family:'Inter',system-ui,sans-serif;">See More</button>
+    <div style="text-align:center;margin-top:36px;">
+      <button id="art-toggle-btn" onclick="(function(){var m=document.getElementById('art-more');var b=document.getElementById('art-toggle-btn');var open=m.style.display==='grid';m.style.display=open?'none':'grid';b.textContent=open?'See More':'See Less';if(!open){m.scrollIntoView({behavior:'smooth',block:'nearest'});}})()" style="cursor:pointer;background:var(--bg-raised-2);border:1px solid var(--line);color:var(--ink);font-size:13px;font-weight:700;padding:13px 30px;border-radius:999px;font-family:'Inter',system-ui,sans-serif;">See More</button>
     </div>
   </div>
 
   <!-- ABOUT -->
-  <div class="section" style="padding:100px 64px;max-width:900px;margin:0 auto;">
-    <div class="eyebrow" style="margin-bottom:20px;">About</div>
-    <p style="font-size:28px;line-height:1.5;font-weight:500;color:var(--ink);margin:0;">
-      "Me in the space building alone, hunting alone. Making my W's alone and L's alone."
-    </p>
-    <p style="font-size:17px;line-height:1.7;color:var(--ink-dim);margin:28px 0 0;">
-      I started web3 as a raider &mdash; making $15 a week and happy with that. Somewhere along the way I figured out
-      something small to build, and kept building it. No agency, no team handed to me on day one &mdash; just spaces,
-      timelines, and a lot of reps. That's the same energy every project gets when I work with them: no hesitation,
-      just attention turned into traction.
-    </p>
+  <div id="about" class="section" style="padding:100px 64px;max-width:1180px;margin:0 auto;">
+    <h2 class="display section-title" style="font-size:38px;margin:0 0 40px;text-align:center;">A bit about me</h2>
+
+    <div class="about-row" style="display:flex;gap:24px;margin-bottom:24px;">
+      <div class="card about-bio" style="flex:1.4;padding:40px;">
+        <div style="font-size:14px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px;">Some context</div>
+        <p style="font-size:15px;line-height:1.75;color:var(--ink-dim);margin:0 0 16px;">
+          I started web3 as a raider &mdash; making $15 a week and happy with that. Somewhere along the way I figured out
+          something small to build, and kept building it. No agency, no team handed to me on day one &mdash; just spaces,
+          timelines, and a lot of reps.
+        </p>
+        <p style="font-size:15px;line-height:1.75;color:var(--ink-dim);margin:0;">
+          What else? I'm a community-first builder, always chasing the next alpha, and lately trying to understand DeFi
+          well enough to build inside it, not just talk about it.
+        </p>
+      </div>
+      <div class="about-photo card duotone-wrap" style="width:280px;flex-shrink:0;overflow:hidden;position:relative;">
+        <img src="assets/pfp.jpg" alt="Morgan" class="duotone" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="duotone-tint"></div>
+      </div>
+    </div>
+
+    <div class="card journey-card" style="padding:40px;margin-bottom:24px;">
+      <div style="font-size:14px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;">The journey</div>
+      <div class="vt">
+        <div class="vt-item"><div class="vt-dot"></div><div class="eyebrow" style="margin-bottom:4px;">2024</div><div style="font-weight:700;font-size:16px;">Started raiding</div><div style="color:var(--ink-faint);font-size:13px;margin-top:3px;">$15 a week, happy with that.</div></div>
+        <div class="vt-item"><div class="vt-dot"></div><div class="eyebrow" style="margin-bottom:4px;">2025</div><div style="font-weight:700;font-size:16px;">Alpha Academy founded</div><div style="color:var(--ink-faint);font-size:13px;margin-top:3px;">Turned reps into a real academy.</div></div>
+        <div class="vt-item"><div class="vt-dot"></div><div class="eyebrow" style="margin-bottom:4px;">2026</div><div style="font-weight:700;font-size:16px;">Full-time campaign creative</div><div style="color:var(--ink-faint);font-size:13px;margin-top:3px;">$TASTY, $PBUG, OrderUp, and more.</div></div>
+        <div class="vt-item now"><div class="vt-dot"></div><div class="eyebrow" style="margin-bottom:4px;">Now</div><div style="font-weight:700;font-size:16px;">Entering DeFi</div><div style="color:var(--ink-faint);font-size:13px;margin-top:3px;">Attention &rarr; traction, for hire.</div></div>
+      </div>
+    </div>
+
+    <!-- OFF THE CLOCK: interests, nested in About -->
+    <div class="misc-row" style="display:flex;gap:24px;align-items:stretch;">
+
+      <div class="card tilt-1 misc-card" style="flex:1;padding:30px;overflow:visible;position:relative;">
+        <div style="font-size:16px;font-weight:700;margin-bottom:8px;">I love the mascots</div>
+        <p style="color:var(--ink-dim);font-size:13px;line-height:1.55;margin:0 0 20px;">Usually the character comes before the campaign &mdash; a good mascot just needs the right brand to land on.</p>
+        <div style="display:flex;align-items:flex-end;height:110px;">
+          <img src="assets/mascot-halo-01.jpg" alt="Mascot study 1" class="tilt-2" style="width:76px;height:94px;object-fit:cover;border-radius:10px;border:3px solid var(--bg-raised-2);box-shadow:0 12px 22px -8px rgba(0,0,0,0.6);z-index:1;">
+          <img src="assets/mascot-halo-02.jpg" alt="Mascot study 2" class="tilt-1" style="width:86px;height:104px;object-fit:cover;border-radius:10px;border:3px solid var(--bg-raised-2);box-shadow:0 12px 22px -8px rgba(0,0,0,0.6);margin-left:-18px;z-index:2;">
+          <img src="assets/mascot-halo-03.jpg" alt="Mascot study 3" class="tilt-3" style="width:76px;height:94px;object-fit:cover;border-radius:10px;border:3px solid var(--bg-raised-2);box-shadow:0 12px 22px -8px rgba(0,0,0,0.6);margin-left:-18px;z-index:1;">
+          <svg width="40" height="26" viewBox="0 0 40 26" fill="none" style="margin-left:10px;flex-shrink:0;"><path d="M2 2C10 18 22 23 36 15" stroke="var(--ink-faint)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="1 4"/><path d="M29 11L36 15L31 21" stroke="var(--ink-faint)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div class="hand" style="color:var(--ink-dim);font-size:20px;margin-top:6px;">some of my favourites</div>
+      </div>
+
+      <div class="card tilt-2" style="flex:1;overflow:hidden;position:relative;">
+        <img src="assets/art-thorned-bloom.jpg" alt="Thorned Bloom study" style="width:100%;height:100%;object-fit:cover;display:block;min-height:220px;">
+        <div style="position:absolute;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:6px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--ink);"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- WRITING -->
-  <div id="writing" class="section" style="padding:60px 64px 100px;max-width:900px;margin:0 auto;">
-    <h2 class="display" style="font-size:40px;margin:0 0 8px;">Writing &amp; Alpha</h2>
-    <p style="color:var(--ink-dim);font-size:16px;margin:0 0 40px;">Threads on attention, hype, and building in public.</p>
-
-    <div style="display:flex;flex-direction:column;">
-      <a href="https://x.com/Morgan_marvi/status/2039994888515727530" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:20px;">
+  <div id="writing" class="section" style="padding:40px 64px 100px;max-width:900px;margin:0 auto;">
+    <h2 class="display section-title" style="font-size:34px;margin:0 0 40px;text-align:center;">Writing &amp; alpha</h2>
+    <div class="card" style="padding:8px 28px;">
+      <a href="https://x.com/Morgan_marvi/status/2039994888515727530" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);gap:20px;text-decoration:none;">
         <div>
-          <div style="font-weight:700;font-size:17px;margin-bottom:4px;">Alpha Doesn't Wait For You</div>
-          <div style="color:var(--ink-faint);font-size:14px;">The market doesn't reward hesitation &mdash; it rewards people who move early and pay attention.</div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:4px;color:var(--ink);">Alpha Doesn't Wait For You</div>
+          <div style="color:var(--ink-faint);font-size:13px;">The market doesn't reward hesitation &mdash; it rewards people who move early.</div>
         </div>
-        <span style="color:var(--ink-faint);font-size:20px;flex-shrink:0;">&rarr;</span>
+        <span class="icon-btn" style="width:34px;height:34px;font-size:14px;">&rarr;</span>
       </a>
-      <a href="https://x.com/Morgan_marvi/status/2029612724942987569" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:20px;">
+      <a href="https://x.com/Morgan_marvi/status/2029612724942987569" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);gap:20px;text-decoration:none;">
         <div>
-          <div style="font-weight:700;font-size:17px;margin-bottom:4px;">Every Great Mission Begins With an Accident</div>
-          <div style="color:var(--ink-faint);font-size:14px;">The origin story behind $PENQUIQUI &mdash; an AI, a penguin, and a mission that was never supposed to start.</div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:4px;color:var(--ink);">Every Great Mission Begins With an Accident</div>
+          <div style="color:var(--ink-faint);font-size:13px;">The origin story behind $PENQUIQUI.</div>
         </div>
-        <span style="color:var(--ink-faint);font-size:20px;flex-shrink:0;">&rarr;</span>
+        <span class="icon-btn" style="width:34px;height:34px;font-size:14px;">&rarr;</span>
       </a>
-      <a href="https://x.com/Morgan_marvi/status/2028425528735076697" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line);gap:20px;">
+      <a href="https://x.com/Morgan_marvi/status/2028425528735076697" class="writing-row" style="display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px;text-decoration:none;">
         <div>
-          <div style="font-weight:700;font-size:17px;margin-bottom:4px;">Attention Is Cheap. Loyalty Is Rare.</div>
-          <div style="color:var(--ink-faint);font-size:14px;">On why movements outlast trends in crypto &mdash; and how to build one.</div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:4px;color:var(--ink);">Attention Is Cheap. Loyalty Is Rare.</div>
+          <div style="color:var(--ink-faint);font-size:13px;">On why movements outlast trends in crypto.</div>
         </div>
-        <span style="color:var(--ink-faint);font-size:20px;flex-shrink:0;">&rarr;</span>
+        <span class="icon-btn" style="width:34px;height:34px;font-size:14px;">&rarr;</span>
       </a>
     </div>
   </div>
 
   <!-- SERVICES -->
-  <div id="services" class="section" style="padding:20px 64px 100px;max-width:1200px;margin:0 auto;">
-    <h2 class="display" style="font-size:40px;margin:0 0 40px;">Services</h2>
-    <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);">
-      <div style="background:var(--bg);padding:32px 24px;">
-        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">01</div>
-        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Community Building</div>
-        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Growing and running active, loyal communities from zero.</div>
+  <div id="services" class="section" style="padding:20px 64px 100px;max-width:1180px;margin:0 auto;">
+    <h2 class="display section-title" style="font-size:34px;margin:0 0 40px;text-align:center;">What I do</h2>
+    <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;">
+      <div class="card" style="padding:28px 22px;">
+        <div class="eyebrow" style="color:var(--ink-faint);margin-bottom:14px;">01</div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:8px;">Community Building</div>
+        <div style="color:var(--ink-dim);font-size:13px;line-height:1.5;">Growing and running active, loyal communities from zero.</div>
       </div>
-      <div style="background:var(--bg);padding:32px 24px;">
-        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">02</div>
-        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">KOL &amp; Raiding</div>
-        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Spaces, timeline pushes, and coordinated visibility that actually converts.</div>
+      <div class="card" style="padding:28px 22px;">
+        <div class="eyebrow" style="color:var(--ink-faint);margin-bottom:14px;">02</div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:8px;">KOL &amp; Raiding</div>
+        <div style="color:var(--ink-dim);font-size:13px;line-height:1.5;">Spaces, timeline pushes, coordinated visibility that converts.</div>
       </div>
-      <div style="background:var(--bg);padding:32px 24px;">
-        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">03</div>
-        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Campaign Creative</div>
-        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Short-form video and narrative concepts built for launches and drops.</div>
+      <div class="card" style="padding:28px 22px;">
+        <div class="eyebrow" style="color:var(--ink-faint);margin-bottom:14px;">03</div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:8px;">Campaign Creative</div>
+        <div style="color:var(--ink-dim);font-size:13px;line-height:1.5;">Short-form video and narrative concepts for launches and drops.</div>
       </div>
-      <div style="background:var(--bg);padding:32px 24px;">
-        <div class="eyebrow" style="color:var(--accent);margin-bottom:16px;">04</div>
-        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Copywriting</div>
-        <div style="color:var(--ink-dim);font-size:14px;line-height:1.5;">Threads, launch copy, and positioning that sounds like a person, not a press release.</div>
+      <div class="card" style="padding:28px 22px;">
+        <div class="eyebrow" style="color:var(--ink-faint);margin-bottom:14px;">04</div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:8px;">Copywriting</div>
+        <div style="color:var(--ink-dim);font-size:13px;line-height:1.5;">Threads and launch copy that sound like a person, not a press release.</div>
       </div>
     </div>
   </div>
 
-  <!-- CONTACT -->
-  <div id="contact" class="section" style="padding:100px 64px 60px;text-align:center;">
-    <div class="eyebrow" style="margin-bottom:20px;">Let's Work</div>
-    <h2 class="display contact-title" style="font-size:64px;margin:0 0 28px;">Entering DeFi.<br>Building With You.</h2>
-    <p style="color:var(--ink-dim);font-size:17px;max-width:520px;margin:0 auto 40px;">If your project needs attention that turns into traction, this is where it starts.</p>
-    <div class="contact-ctas" style="display:flex;gap:16px;justify-content:center;">
-      <a href="https://x.com/Morgan_marvi" style="display:inline-flex;align-items:center;padding:16px 32px;border-radius:2px;background:var(--ink);color:#0a0a0b;font-size:15px;font-weight:700;">Message on X</a>
-      <a href="https://t.me/ShadowSyndicate00" style="display:inline-flex;align-items:center;padding:16px 32px;border-radius:2px;border:1px solid var(--line);color:var(--ink);font-size:15px;font-weight:600;">Telegram</a>
+  <!-- CONTACT: ends the page, no footer bar after it -->
+  <div id="contact" class="section" style="position:relative;padding:130px 64px 90px;text-align:center;overflow:hidden;">
+    <div style="position:absolute;bottom:-320px;left:50%;transform:translateX(-50%);width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,var(--accent) 0%,var(--accent-dim) 40%,transparent 72%);opacity:0.45;filter:blur(14px);pointer-events:none;"></div>
+    <div class="lines" style="opacity:0.6;"></div>
+    <div style="position:relative;">
+      <h2 class="display contact-title" style="font-size:44px;margin:0 0 18px;">Your move. Say hello.</h2>
+      <p style="color:var(--ink-dim);font-size:16px;max-width:460px;margin:0 auto 36px;">If your project needs attention that turns into traction, this is where it starts.</p>
+      <div class="contact-ctas" style="display:flex;gap:12px;justify-content:center;align-items:center;">
+        <a href="https://x.com/Morgan_marvi" target="_blank" rel="noopener" class="icon-btn" style="width:48px;height:48px;font-size:18px;">𝕏</a>
+        <a href="https://x.com/Morgan_marvi" target="_blank" rel="noopener" class="pill-btn" style="padding:15px 34px;">Message on X</a>
+        <a href="https://t.me/ShadowSyndicate00" target="_blank" rel="noopener" class="icon-btn" style="width:48px;height:48px;font-size:17px;">T</a>
+      </div>
     </div>
   </div>
 
-  <div class="footer-row section" style="padding:32px 64px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
-    <div style="color:var(--ink-faint);font-size:13px;">&copy; Morgan &middot; 2026</div>
-    <div style="color:var(--ink-faint);font-size:13px;">@Morgan_marvi</div>
-  </div>
-
 </div>
-
-<!-- ART MODAL -->
-<div id="art-modal" onclick="closeArtModal(event)" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(6,6,7,0.94);align-items:center;justify-content:center;padding:48px;cursor:zoom-out;">
-  <button onclick="closeArtModal(event)" aria-label="Close" style="position:absolute;top:24px;right:32px;width:40px;height:40px;background:transparent;border:1px solid var(--line);border-radius:50%;color:var(--ink);font-size:22px;line-height:1;cursor:pointer;">&times;</button>
-  <figure onclick="event.stopPropagation()" style="margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;gap:16px;cursor:default;">
-    <img id="art-modal-img" src="" alt="" style="display:block;width:auto;height:auto;max-width:90vw;max-height:85vh;border:1px solid var(--line);border-radius:2px;box-shadow:0 40px 100px -20px rgba(0,0,0,0.7);">
-    <figcaption id="art-modal-caption" style="color:var(--ink-dim);font-size:15px;font-weight:600;"></figcaption>
-  </figure>
-</div>
-
-<script>
-  function openArtModal(src, title){
-    var modal = document.getElementById('art-modal');
-    var img = document.getElementById('art-modal-img');
-    var caption = document.getElementById('art-modal-caption');
-    img.src = src;
-    img.alt = title;
-    caption.textContent = title;
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeArtModal(e){
-    document.getElementById('art-modal').style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') closeArtModal();
-  });
-</script>
-
 </body>
 </html>
